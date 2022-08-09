@@ -40,14 +40,6 @@ postdate timestamp default now(),
 userid int ,
  FOREIGN KEY (userid) REFERENCES user(id)
 );
-
-create table Orders (
-    OrderID int NOT NULL,
-    OrderNumber int NOT NULL,
-    PersonID int,
-    PRIMARY KEY (OrderID),
-    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
-); 
 ```
 
 
