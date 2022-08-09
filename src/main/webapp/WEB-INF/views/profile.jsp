@@ -54,7 +54,7 @@ body {
 	function checkExtension()
 	{
 		//alert($("#formFileSm").val().endsWith(".jpg"));
-		if($("#formFileSm").val().endsWith(".jpg") || $("#formFileSm").val().endsWith(".jpeg") || $("#formFileSm").val().endsWith(".png"))
+		if($("#formFileSm").val().toLowerCase().endsWith(".jpg") || $("#formFileSm").val().toLowerCase().endsWith(".jpeg") || $("#formFileSm").val().toLowerCase().endsWith(".png"))
 		{
 				$("#addPostButton").attr("disabled",false);
 		}else{
