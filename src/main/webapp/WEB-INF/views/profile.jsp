@@ -25,6 +25,44 @@ body {
 	background-size: cover;
 }
 </style>
+
+	<script>
+	function readContent(id)
+	{
+		swal($("#eachPostBlogBody"+id).text(),{
+			  button: "Cose",
+			});
+	}
+	
+	function demo(){
+		alert("boka");
+	}
+	
+	function setEditFormContent(postid)
+	{/* 
+		$("#editBlogForm").attr("action","/blog/edit/"+postid);
+		$("#editPostId").val(postid);
+		$("#editTitle").val(posttitle);
+		$("#editBody").val(postbody); */
+		
+		$("#editBlogForm").attr("action","/blog/edit/"+postid);
+		$("#editPostId").val(postid);
+		$("#editTitle").val($("#eachPostTitle"+postid).text());
+		$("#editBody").val($("#eachPostBlogBody"+postid).text());
+	}
+	
+	function checkExtension()
+	{
+		//alert($("#formFileSm").val().endsWith(".jpg"));
+		if($("#formFileSm").val().endsWith(".jpg"))
+		{
+				$("#addPostButton").attr("disabled",false);
+		}else{
+			$("#addPostButton").attr("disabled",true);
+		}
+	}
+	</script>
+
 </head>
 <body>
 	<%@include file="navbar.jsp"%>
@@ -156,7 +194,7 @@ body {
 									<label for="title" class="col-sm-2 col-form-label">Title</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="editTitle"
-											value="" name="editTitle">
+											value="" name="editTitle" required>
 									</div>
 								</div>
 
@@ -164,7 +202,7 @@ body {
 									<label for="body" class="col-sm-2 col-form-label">Body</label>
 									<div class="col-sm-10">
 										<textarea class="form-control" id="editBody" name="editBody"
-											rows="15"></textarea>
+											rows="15" required></textarea>
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary btn-sm">Update</button>
@@ -203,18 +241,18 @@ body {
 									<img src="/resources/image/uploads/${blog.getImage()}"
 										class="card-img-top" alt="..." height="230px;">
 									<div class="card-body">
-										<h5 class="card-title">${blog.getTitle()}</h5>
+										<h5 class="card-title" id="eachPostTitle${blog.getId()}">${blog.getTitle()}</h5>
 
 										<c:choose>
 											<c:when test="${blog.getBody().length()>100 }">
 												<p class="card-text">${blog.getBody().substring(0,100) }...</p>
-												<p class="card-text" id="blogBody${blog.getId()}" hidden>${blog.getBody()}</p>
+												<p class="card-text" id="eachPostBlogBody${blog.getId()}" hidden>${blog.getBody()}</p>
 												<button class="btn btn-sm btn-primary"
 													onclick="readContent(${blog.getId()})"
 													id="readLink${blog.getId()}">Read Full Post</button>
 											</c:when>
 											<c:otherwise>
-												<p class="card-text">${blog.getBody()}</p>
+												<p class="card-text" id="eachPostBlogBody${blog.getId()}">${blog.getBody()}</p>
 												<br>
 												<br>
 												<br>
@@ -222,7 +260,7 @@ body {
 										</c:choose>
 										<button class="btn btn-outline-success btn-sm"
 											data-bs-toggle="modal" data-bs-target="#EditBlogPostModal"
-											onclick="setEditFormContent(${blog.getId()},'${blog.getTitle()}','${blog.getBody()}')">Edit</button>
+											onclick="setEditFormContent(${blog.getId()})">Edit</button>
 
 										<a href="/blog/delete/${blog.getId()}"
 											class="btn btn-outline-danger btn-sm">Delete</a>
@@ -237,33 +275,7 @@ body {
 			</div>
 		</div>
 	</div>
-	<script>
-	function readContent(id)
-	{
-		swal($("#blogBody"+id).text(),{
-			  button: "Close",
-			});
-	}
-	
-	function setEditFormContent(postid,posttitle,postbody)
-	{
-		$("#editBlogForm").attr("action","/blog/edit/"+postid);
-		$("#editPostId").val(postid);
-		$("#editTitle").val(posttitle);
-		$("#editBody").val(postbody);
-	}
-	
-	function checkExtension()
-	{
-		//alert($("#formFileSm").val().endsWith(".jpg"));
-		if($("#formFileSm").val().endsWith(".jpg"))
-		{
-				$("#addPostButton").attr("disabled",false);
-		}else{
-			$("#addPostButton").attr("disabled",true);
-		}
-	}
-	</script>
+
 
 	<!-- JavaScript Bundle with Popper -->
 	<script
