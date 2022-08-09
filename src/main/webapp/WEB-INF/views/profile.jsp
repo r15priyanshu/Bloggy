@@ -54,7 +54,7 @@ body {
 	function checkExtension()
 	{
 		//alert($("#formFileSm").val().endsWith(".jpg"));
-		if($("#formFileSm").val().endsWith(".jpg"))
+		if($("#formFileSm").val().endsWith(".jpg") || $("#formFileSm").val().endsWith(".jpeg") || $("#formFileSm").val().endsWith(".png"))
 		{
 				$("#addPostButton").attr("disabled",false);
 		}else{
