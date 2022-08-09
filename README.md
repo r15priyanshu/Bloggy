@@ -6,7 +6,7 @@ Technical Blogging mainly serves three audiences:
 * Entrepreneurs who intend to use blogging as an internet marketing tool for their startup/business.
  
 
-![Login](Screenshots/Home.PNG)
+![Home](Screenshots/Home.PNG)
 
 ### QUICK GUIDE/STEPS TO RUN THE PROJECT:
 1. Clone the project.
